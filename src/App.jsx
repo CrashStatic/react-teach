@@ -4,6 +4,10 @@ import WayToTeach from "./components/WayToTeach.jsx";
 import Button from "./components/button/Button.jsx";
 
 export default function App() {
+  function handleClick(type) {
+    console.log(type);
+  }
+
   return (
     <div>
       <Header/>
@@ -20,9 +24,9 @@ export default function App() {
         </section>
         <section>
           <h2>Чем мы отличаемся от других</h2>
-          <Button>Подход</Button>
-          <Button>Доступность</Button>
-          <Button>Концентрация</Button>
+          <Button onClick={() => handleClick('way')}>Подход</Button>
+          <Button onClick={() => handleClick('easy')}>Доступность</Button>
+          <Button onClick={() => handleClick('program')}>Концентрация</Button>
         </section>
       </main>
     </div>
