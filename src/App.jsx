@@ -1,15 +1,7 @@
 import Header from "./components/Header.jsx";
-import {ways} from "./data.js";
-
-function WayToTeach(props) {
-  return (
-    <li>
-      <p>
-        <strong>{props.title}</strong> {props.description}
-      </p>
-    </li>
-  )
-}
+import { ways } from "./data.js";
+import WayToTeach from "./components/WayToTeach.jsx";
+import Button from "./components/button/Button.jsx";
 
 export default function App() {
   return (
@@ -25,6 +17,12 @@ export default function App() {
             <WayToTeach {...ways[2]} />
             <WayToTeach {...ways[3]} />
           </ul>
+        </section>
+        <section>
+          <h2>Чем мы отличаемся от других</h2>
+          <Button>Подход</Button>
+          <Button>Доступность</Button>
+          <Button>Концентрация</Button>
         </section>
       </main>
     </div>
