@@ -31,7 +31,7 @@ export default function App() {
           <Button onClick={() => handleClick('easy')}>Доступность</Button>
           <Button onClick={() => handleClick('program')}>Концентрация</Button>
 
-          <p>{differences[contentType]}</p>
+          { contentType ? (<p>{differences[contentType]}</p>) : (<p>Нажми на кнопку</p>)}
         </section>
       </main>
     </div>
