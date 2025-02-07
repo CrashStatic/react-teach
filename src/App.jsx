@@ -5,14 +5,13 @@ import DifferentSection from "./components/DifferentSection.jsx";
 export default function App() {
 
   return (
-    <div>
+    <>
       <Header/>
-
       <main>
         <TeachingSection />
         <DifferentSection />
       </main>
-    </div>
+    </>
   )
 }
 
