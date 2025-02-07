@@ -1,11 +1,14 @@
 import Header from "./components/Header.jsx";
-import { ways } from "./data.js";
+import { ways, differences } from "./data.js";
 import WayToTeach from "./components/WayToTeach.jsx";
 import Button from "./components/button/Button.jsx";
+import { useState } from "react";
 
 export default function App() {
+  let [contentType, setContentType] = useState(null);
+
   function handleClick(type) {
-    console.log(type);
+    setContentType(type);
   }
 
   return (
@@ -27,6 +30,8 @@ export default function App() {
           <Button onClick={() => handleClick('way')}>Подход</Button>
           <Button onClick={() => handleClick('easy')}>Доступность</Button>
           <Button onClick={() => handleClick('program')}>Концентрация</Button>
+
+          <p>{differences[contentType]}</p>
         </section>
       </main>
     </div>
