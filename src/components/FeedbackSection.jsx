@@ -1,5 +1,27 @@
 import Button from "./button/Button.jsx";
-import {useState} from "react";
+import {useRef, useState} from "react";
+
+function StateVsRef() {
+  const input = useRef();
+  const [show, setShow] = useState(false);
+
+  function handleKeyDown(e) {
+    if (e.keyCode === 13) {
+      setShow(true);
+    }
+  }
+
+  return (
+    <div>
+      <h2>Input value: {show && input.current.value}</h2>
+      <input
+        ref={input}
+        type="text"
+        className='control'
+        onKeyDown={handleKeyDown} />
+    </div>
+  )
+}
 
 export default function FeedbackSection() {
   const [form, setForm] = useState({
@@ -24,7 +46,7 @@ export default function FeedbackSection() {
   return (
     <section>
       <h2>Обратная связь</h2>
-      <form>
+      <form style={{marginBottom: '1rem'}}>
         <label htmlFor='name'>Ваше имя</label>
         <input
           type='text'
@@ -47,10 +69,13 @@ export default function FeedbackSection() {
           <option value='suggest'>Предложение</option>
         </select>
 
-        <pre>{JSON.stringify(form, null, 2)}</pre>
+        {/*<pre>{JSON.stringify(form, null, 2)}</pre>*/}
 
         <Button disabled={form.hasError} isActive={!form.hasError}>Отправить</Button>
       </form>
+
+      <hr />
+      <StateVsRef />
     </section>
   )
 }
