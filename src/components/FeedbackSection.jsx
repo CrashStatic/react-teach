@@ -2,13 +2,23 @@ import Button from "./button/Button.jsx";
 import {useState} from "react";
 
 export default function FeedbackSection() {
-  const [name, setName] = useState('');
-  const [reason, setReason] = useState('help');
-  const [hasError, setHasError] = useState(false);
+  const [form, setForm] = useState({
+    name: '',
+    hasError: false,
+    reason: 'help'
+  })
+  // const [name, setName] = useState('');
+  // const [reason, setReason] = useState('help');
+  // const [hasError, setHasError] = useState(false);
 
   function handleNameChange(event) {
-    setName(event.target.value);
-    setHasError(event.target.value.trim().length === 0);
+    // setName(event.target.value);
+    // setHasError(event.target.value.trim().length === 0);
+    setForm(prev => ({
+      ...prev,
+      name: event.target.value,
+      hasError: event.target.value.trim().length === 0,
+    }))
   }
 
   return (
@@ -20,26 +30,26 @@ export default function FeedbackSection() {
           type='text'
           id='name'
           className='control'
-          value={name}
+          value={form.name}
           style={{
-            border: hasError ? '1px solid red' : null,
+            border: form.hasError ? '1px solid red' : null,
           }}
           onChange={handleNameChange} />
 
         <label htmlFor='reason'>Причина обращения</label>
-        <select id='reason' className='control' value={reason} onChange={event => setReason(event.target.value)}>
+        <select
+          id='reason'
+          className='control'
+          value={form.reason}
+          onChange={event => setForm({ ...prev, reason: event.target.value }) }>
           <option value='error'>Ошибка</option>
           <option value='help'>Нужна помощь</option>
           <option value='suggest'>Предложение</option>
         </select>
 
-        <pre>
-          Name: {name}
-          <br />
-          Reason: {reason}
-        </pre>
+        <pre>{JSON.stringify(form, null, 2)}</pre>
 
-        <Button disabled={hasError} isActive={!hasError}>Отправить</Button>
+        <Button disabled={form.hasError} isActive={!form.hasError}>Отправить</Button>
       </form>
     </section>
   )
