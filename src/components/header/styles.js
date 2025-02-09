@@ -1,4 +1,6 @@
-header {
+import { styled } from "styled-components";
+
+export const HeaderContainer = styled.header`
     height: 50px;
     display: flex;
     padding: 0 2rem;
@@ -6,4 +8,5 @@ header {
     align-items: center;
     border-bottom: 1px solid #ccc;
     background: #fafafa;
-}
+`
+
