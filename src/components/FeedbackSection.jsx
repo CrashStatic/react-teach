@@ -39,7 +39,7 @@ export default function FeedbackSection() {
           Reason: {reason}
         </pre>
 
-        <Button>Отправить</Button>
+        <Button disabled={hasError} isActive={!hasError}>Отправить</Button>
       </form>
     </section>
   )
