@@ -1,23 +1,25 @@
 import Button from "./button/Button.jsx";
 import Modal from "./modal/Modal.jsx";
-import {useCallback, useEffect, useState} from "react";
+import { useEffect, useState} from "react";
+import useInput from "../hooks/useInput.js";
 
 export default function EffectSection() {
+  const input = useInput();
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
 
-  const fetchUsers = useCallback(async () => {
-    setLoading(true);
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
-    const users = await response.json();
-    setUsers(users);
-    setLoading(false);
-  }, [])
-
   useEffect(() => {
+    async function fetchUsers() {
+      setLoading(true);
+      const response = await fetch('https://jsonplaceholder.typicode.com/users');
+      const users = await response.json();
+      setUsers(users);
+      setLoading(false);
+    }
+
     fetchUsers();
-  }, [fetchUsers])
+  }, [])
 
   return (
     <section>
@@ -36,11 +38,18 @@ export default function EffectSection() {
       {loading && <p>Loading...</p>}
 
       {!loading && (
-        <ul>
-          {users.map((user) => (
-            <li key={user.id}>{user.name}</li>
-          ))}
-        </ul>)}
+        <>
+          <input type="text" className='control' {...input} />
+          <ul>
+            {users
+              .filter((user) => user.name.toLowerCase().includes(input.value.toLowerCase()))
+              .map((user) => (
+              <li key={user.id}>{user.name}</li>
+            ))}
+          </ul>
+        </>
+      )
+      }
     </section>
   )
 }
