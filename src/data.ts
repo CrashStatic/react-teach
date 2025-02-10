@@ -1,4 +1,15 @@
-export const ways = [
+interface WaysProps {
+  title: string,
+  description: string,
+}
+
+interface Differences {
+  way: string;
+  easy: string;
+  program: string;
+}
+
+export const ways: WaysProps[] = [
   {
     title: 'Фильтрация информации и технологий.',
     description:
@@ -26,7 +37,7 @@ export const ways = [
   },
 ]
 
-export const differences = {
+export const differences: Differences = {
   way: 'Узконаправленный подход. Учим только фронтенду, поэтому вы получаете именно те знания, за которыми пришли.',
   easy: 'Доступность обучения. Простыми словами объясняем сложные темы на понятных примерах.',
   program:

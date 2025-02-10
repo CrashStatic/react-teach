@@ -1,6 +1,12 @@
-import Button from "./button/Button.jsx";
+import Button from "./button/Button";
+import {TabContent} from "../App";
 
-export default function TabsSection({ active, onChange}) {
+interface TabButtonProps {
+    active: TabContent;
+    onChange: (tab: TabContent) => void;
+}
+
+export default function TabsSection({ active, onChange}: TabButtonProps) {
   return (
     <section style={{ marginBottom: '1rem' }}>
       <Button isActive={active === 'main'} onClick={() => onChange('main')}>Главная</Button>

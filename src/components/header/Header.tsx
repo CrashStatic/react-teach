@@ -1,12 +1,12 @@
 import logo from '/logo-name.svg';
 import {useEffect, useState} from "react";
-import { HeaderContainer} from "./styles.js";
+import { HeaderContainer} from './styles';
 
 export default function Header() {
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState<Date>(new Date());
 
   useEffect(() => {
-    const interval =  setInterval(() => setTime(new Date()), 1000);
+    const interval: NodeJS.Timeout =  setInterval(() => setTime(new Date()), 1000);
 
     return () => clearInterval(interval);
   }, []);

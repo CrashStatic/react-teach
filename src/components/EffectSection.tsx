@@ -1,19 +1,24 @@
-import Button from "./button/Button.jsx";
-import Modal from "./modal/Modal.jsx";
+import Button from "./button/Button";
+import Modal from "./modal/Modal";
 import { useEffect, useState} from "react";
-import useInput from "../hooks/useInput.js";
+import useInput from "../hooks/useInput";
+
+interface User {
+  id: number;
+  name: string;
+}
 
 export default function EffectSection() {
   const input = useInput();
-  const [modal, setModal] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [users, setUsers] = useState([]);
+  const [modal, setModal] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
     async function fetchUsers() {
       setLoading(true);
       const response = await fetch('https://jsonplaceholder.typicode.com/users');
-      const users = await response.json();
+      const users: User[] = await response.json();
       setUsers(users);
       setLoading(false);
     }
