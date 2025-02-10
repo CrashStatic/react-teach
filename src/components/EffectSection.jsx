@@ -20,6 +20,7 @@ export default function EffectSection() {
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis porta tortor. Aenean mattis, erat
           at condiment tincidunt, eros augue facilisis quam, vel pharetra leo nibh sit amet nisl.
         </p>
+        <Button onClick={() => setModal(false)}>Close modal</Button>
       </Modal>
     </section>
   )
