@@ -1,6 +1,9 @@
 import Button from "./button/Button.jsx";
 import {useRef, useState} from "react";
 
+
+
+
 function StateVsRef() {
   const input = useRef();
   const [show, setShow] = useState(false);
@@ -13,7 +16,7 @@ function StateVsRef() {
 
   return (
     <div>
-      <h2>Input value: {show && input.current.value}</h2>
+      <h2>Input value: {show && input.current["value"]}</h2>
       <input
         ref={input}
         type="text"
